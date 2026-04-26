@@ -91,13 +91,40 @@ export default function ServiceInfoSection() {
             )
         },
         {
-            label: '장비 구매 상담', icon: (
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="3" width="20" height="14" rx="2" strokeWidth="1.6" />
-                    <line x1="8" y1="21" x2="16" y2="21" />
-                    <line x1="12" y1="17" x2="12" y2="21" />
-                    <path d="M17 9l-3 3-1.5-1.5" strokeWidth="2.5" />
-                    <circle cx="12" cy="10" r="8" strokeOpacity="0.1" strokeWidth="1" />
+            label: '개원신청 상담', icon: (
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+            )
+        },
+        {
+            label: '체어 구매 상담', icon: (
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M19 8a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v4"></path>
+                    <path d="M22 15a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2"></path>
+                    <line x1="12" y1="17" x2="12" y2="22"></line>
+                    <line x1="7" y1="22" x2="17" y2="22"></line>
+                    <path d="M8 8v4"></path>
+                    <path d="M16 8v4"></path>
+                </svg>
+            )
+        },
+        {
+            label: '영상장비 구매 상담', icon: (
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2v4"></path>
+                    <path d="M12 18v4"></path>
+                    <path d="M4.93 4.93l2.83 2.83"></path>
+                    <path d="M16.24 16.24l2.83 2.83"></path>
+                    <path d="M2 12h4"></path>
+                    <path d="M18 12h4"></path>
+                    <path d="M4.93 19.07l2.83-2.83"></path>
+                    <path d="M16.24 7.76l2.83-2.83"></path>
+                    <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
                 </svg>
             )
         },
@@ -110,64 +137,55 @@ export default function ServiceInfoSection() {
         },
         {
             label: '협력업체 문의', icon: (
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
-            )
-        },
-        {
-            label: '카드무이자 안내', icon: (
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                    <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-                    <line x1="2" y1="10" x2="22" y2="10"></line>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M8 8a4 4 0 1 0 8 0 4 4 0 0 0-8 0z"></path>
+                    <path d="M12 14c-5.33 0-8 2.67-8 5v3h16v-3c0-2.33-2.67-5-8-5z"></path>
+                    <circle cx="18" cy="8" r="3"></circle>
+                    <path d="M22 16c0-1.8-1.5-3.3-3.5-4"></path>
+                    <circle cx="6" cy="8" r="3"></circle>
+                    <path d="M2 16c0-1.8 1.5-3.3 3.5-4"></path>
                 </svg>
             )
         },
     ];
 
     return (
-        <section className="w-full bg-white flex flex-col items-center overflow-x-hidden">
-            {/* Divider Line: Minimum 1920px width, centered */}
-            <div className="w-full flex justify-center" style={{ marginTop: '30.36px', marginBottom: '35px' }}>
-                <div className="min-w-[1920px] w-full h-[1px] bg-[#DCDCDC]"></div>
-            </div>
+        <section className="w-full bg-[#EFF1F5] flex flex-col items-center overflow-x-hidden">
+            <div className="w-full bg-white flex justify-center">
+                <div className="w-[1800px] mx-auto">
+                    <div className="grid grid-cols-[1.2fr_1.2fr_1.4fr] pt-[35px] pb-[22px]">
+                        {/* Column 1: 공지사항 */}
+                        <div className="border-r border-[#EEEEEE]">
+                            <ListSection title="공지사항" items={notices} gap={10} />
+                        </div>
 
-            <div className="w-[1800px] mx-auto">
-                <div className="grid grid-cols-[1.2fr_1.2fr_1.4fr] pb-[22px]">
-                    {/* Column 1: 공지사항 */}
-                    <div className="border-r border-[#EEEEEE]">
-                        <ListSection title="공지사항" items={notices} gap={10} />
-                    </div>
+                        {/* Column 2: 이벤트 */}
+                        <div className="px-10 border-r border-[#EEEEEE]">
+                            <ListSection title="이벤트" items={events} gap={8} />
+                        </div>
 
-                    {/* Column 2: 이벤트 */}
-                    <div className="px-10 border-r border-[#EEEEEE]">
-                        <ListSection title="이벤트" items={events} gap={8} />
-                    </div>
-
-                    {/* Column 3: Mall 서비스 안내 */}
-                    <div className="pl-14 flex flex-col">
-                        <h3 className="text-[17px] font-bold text-[#1E1E1E] mb-8">Mall 서비스 안내</h3>
-                        <div className="flex justify-between items-start">
-                            {services.map((service, idx) => (
-                                <div key={idx} className="flex flex-col items-center group cursor-pointer">
-                                    <div className="w-[50px] h-[50px] flex items-center justify-center text-[#999999] group-hover:text-[#EB6100] transition-colors mb-2">
-                                        {service.icon}
+                        {/* Column 3: Mall 서비스 안내 */}
+                        <div className="pl-14 flex flex-col">
+                            <h3 className="text-[17px] font-bold text-[#1E1E1E] mb-8">Mall 서비스 안내</h3>
+                            <div className="flex justify-between items-start">
+                                {services.map((service, idx) => (
+                                    <div key={idx} className="flex flex-col items-center group cursor-pointer">
+                                        <div className="w-[50px] h-[50px] flex items-center justify-center text-[#999999] group-hover:text-[#EB6100] transition-colors mb-2">
+                                            {service.icon}
+                                        </div>
+                                        <span
+                                            className="text-[14px] font-medium text-[#1E1E1E] text-center whitespace-nowrap"
+                                            style={{
+                                                fontFamily: 'Pretendard',
+                                                lineHeight: '100%',
+                                                letterSpacing: '-1.08px'
+                                            }}
+                                        >
+                                            {service.label}
+                                        </span>
                                     </div>
-                                    <span
-                                        className="text-[14px] font-medium text-[#1E1E1E] text-center whitespace-nowrap"
-                                        style={{
-                                            fontFamily: 'Pretendard',
-                                            lineHeight: '100%',
-                                            letterSpacing: '-1.08px'
-                                        }}
-                                    >
-                                        {service.label}
-                                    </span>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>

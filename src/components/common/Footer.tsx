@@ -2,7 +2,7 @@ import ServiceInfoSection from '@/components/main/ServiceInfoSection';
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-white pt-0 pb-20">
+        <footer className="w-full bg-white pt-0 pb-20 border-t-[1px] border-[#DCDCDC]">
             {/* 0. 서비스 안내 영역 (공지사항, 이벤트, Mall 서비스) */}
             <ServiceInfoSection />
 

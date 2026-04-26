@@ -562,7 +562,14 @@ export default function DetailTabs({
                         <div className="w-full h-[79px] flex items-center justify-between px-0 bg-white">
                             <div className="flex items-center gap-4">
                                 <div className="w-[50px] h-[50px] flex items-center justify-center p-1 shrink-0 border border-[#E9E9E9]">
-                                    <img src={thumbnail} alt={productName} className="w-full h-full object-contain" />
+                                    <img 
+                                        src={thumbnail || (isMaterial ? '/img/total_1.png' : '/img/imple_1.png')} 
+                                        alt={productName} 
+                                        className="w-full h-full object-contain" 
+                                        onError={(e) => {
+                                            (e.target as HTMLImageElement).src = isMaterial ? "/img/total_1.png" : "/img/imple_1.png";
+                                        }}
+                                    />
                                 </div>
                                 <div className="flex flex-col">
                                     <h3 className="text-[16px] font-bold text-[#333333] leading-none mb-2">{productName}</h3>

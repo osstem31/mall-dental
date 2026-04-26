@@ -19,7 +19,7 @@ export default function Home() {
         />
 
         <RecommendedSection
-          title="OSSTEM 추천상품"
+          title="추천상품"
         />
 
         <VideoSection
@@ -28,14 +28,6 @@ export default function Home() {
 
         <NewProductsSection
           title="품목별 신제품"
-        />
-
-        <DiscountSection
-          title="할인 상품"
-        />
-
-        <SpecialtySection
-          title="전문관"
         />
       </div>
     </div>

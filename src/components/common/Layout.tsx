@@ -2,6 +2,8 @@ import React, { Suspense } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import OrderSheet from './OrderSheet';
+import TopButton from './TopButton';
+import NewsTicker from './NewsTicker';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -18,6 +20,8 @@ export default function Layout({ children }: LayoutProps) {
             </main>
             <Footer />
             <OrderSheet />
+            <TopButton />
+            <NewsTicker />
         </div>
     );
 }

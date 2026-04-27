@@ -13,38 +13,53 @@ const newsItems = [
 ];
 
 export default function NewsTicker() {
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(true);
 
     return (
-        <div className="fixed bottom-0 left-0 w-full h-[35px] bg-[#DCE4F2] border-t border-[#C5D0E6] flex items-center z-[1000] overflow-hidden">
-            {/* Left Control */}
-            <div className="w-[35px] h-full bg-white border-r border-[#C5D0E6] flex items-center justify-center shrink-0 cursor-pointer hover:bg-gray-50">
-                <svg width="12" height="7" viewBox="0 0 12 7" fill="none" className={`transition-transform ${isExpanded ? 'rotate-180' : ''}`}>
-                    <path d="M1 1L6 6L11 1" stroke="#333333" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <div 
+            className={`fixed bottom-0 left-0 h-[36px] flex items-center z-[1000] transition-all duration-300 ease-in-out ${
+                isExpanded ? 'w-full' : 'w-[50px]'
+            }`}
+        >
+            {/* Toggle Button */}
+            <div 
+                onClick={() => setIsExpanded(!isExpanded)}
+                className={`w-[50px] h-[36px] bg-white border border-[#C5D0E6] flex items-center justify-center cursor-pointer hover:bg-gray-50 shrink-0 z-10 ${
+                    isExpanded ? 'border-r-0' : 'rounded-tr-[4px]'
+                }`}
+                title={isExpanded ? "뉴스 닫기" : "뉴스 열기"}
+            >
+                <svg 
+                    width="12" 
+                    height="7" 
+                    viewBox="0 0 12 7" 
+                    fill="none" 
+                    className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : 'rotate-0'}`}
+                >
+                    <path d="M1 6L6 1L11 6" stroke="#333333" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
             </div>
 
-            {/* Scrolling Area */}
-            <div className="flex-1 overflow-hidden relative h-full flex items-center">
-                <div className="flex whitespace-nowrap animate-ticker">
-                    {/* Duplicate the items to ensure seamless loop */}
-                    {[...newsItems, ...newsItems].map((item, index) => (
-                        <div key={index} className="flex items-center mx-[30px] cursor-pointer group">
-                            <span className="text-[#0047BB] font-bold text-[16px] mr-[8px] whitespace-nowrap">[{item.category}]</span>
-                            <span className="text-[#333333] text-[16px] font-medium group-hover:underline whitespace-nowrap">{item.text}</span>
-                        </div>
-                    ))}
+            {/* News Bar Content */}
+            <div className={`flex-1 h-full bg-[#DCE4F2] border-t border-[#C5D0E6] flex items-center overflow-hidden transition-all duration-300 ${
+                isExpanded ? 'opacity-100' : 'opacity-0 w-0 pointer-events-none'
+            }`}>
+                <div className="flex-1 overflow-hidden relative h-full flex items-center px-4">
+                    <div className="flex whitespace-nowrap animate-ticker">
+                        {[...newsItems, ...newsItems].map((item, index) => (
+                            <div key={index} className="flex items-center mx-[30px] cursor-pointer group">
+                                <span className="text-[#0047BB] font-bold text-[16px] mr-[8px] whitespace-nowrap">[{item.category}]</span>
+                                <span className="text-[#333333] text-[16px] font-medium group-hover:underline whitespace-nowrap">{item.text}</span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
 
             <style jsx global>{`
                 @keyframes ticker {
-                    0% {
-                        transform: translateX(0);
-                    }
-                    100% {
-                        transform: translateX(-50%);
-                    }
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
                 }
                 .animate-ticker {
                     animation: ticker 30s linear infinite;

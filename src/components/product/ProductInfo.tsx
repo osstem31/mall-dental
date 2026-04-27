@@ -68,7 +68,7 @@ const PRODUCT_METADATA: Record<string, {
         ]
     },
     'Osstem Implant': {
-        promo: '세계가 인정한 오스템의 기술력, TS III SA Implant',
+        promo: '세계가 인정한 오스템의 기술력, TS II SA Implant',
         description: '최적의 SA 표면 구현을 위한 최적의 나사산 디자인',
         unit: '1ea/pkg',
         manufacturer: '오스템임플란트 / 대한민국',

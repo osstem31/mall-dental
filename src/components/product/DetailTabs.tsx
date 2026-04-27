@@ -677,10 +677,10 @@ export default function DetailTabs({
                         ))
                     ) : (
                         [
-                            { name: 'TS III SA Implant Bevel Machined', price: '164,000', img: '/img/Rel_1.png' },
+                            { name: 'TS II SA Implant Bevel Machined', price: '164,000', img: '/img/Rel_1.png' },
                             { name: 'TS TI Multi Base Screw', price: '22,000', img: '/img/Rel_2.png' },
                             { name: 'TS Transfer Implant Pick-up Guide Pin', price: '16,500', img: '/img/Rel_3.png' },
-                            { name: 'TS III SOI Implant Pre-Mounted', price: '201,000', img: '/img/Rel_4.png' },
+                            { name: 'TS II SOI Implant Pre-Mounted', price: '201,000', img: '/img/Rel_4.png' },
                             { name: 'TS GBR Cover Screw', price: '11,000', img: '/img/Rel_5.png' },
                             { name: 'TS Scan Healing Abutment', price: '44,000', img: '/img/Rel_6.png' },
                             { name: 'TS Digital Lab Analog', price: '19,800', img: '/img/Rel_7.png' },

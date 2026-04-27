@@ -100,12 +100,12 @@ function CategoryContent() {
             '임플란트': {
                 brands: ['Osstem Implant'],
                 items: [
-                    'TS III SA Implant NoMount',
+                    'TS II SA Implant NoMount',
                     'TS II SA Implant Pre-Mounted',
                     'TS II BA Implant NoMount',
                     'TS II BA Implant Pre-Mounted',
-                    'TS III SA Implant Bevel Machined',
-                    'TS III CA Implant NoMount',
+                    'TS II SA Implant Bevel Machined',
+                    'TS II CA Implant NoMount',
                     'TS II SOI Implant NoMount',
                     'TS IV SA Implant NoMount',
                     'TS IV CA Implant NoMount',

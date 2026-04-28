@@ -123,6 +123,22 @@ export default function DetailTabs({
                     </div>
                 </div>
 
+                {/* KS3 Promotional Video */}
+                {isKS3 && (
+                    <div className="w-[1160px] flex justify-center mt-[60px] mb-[40px]">
+                        <iframe 
+                            width="1160" 
+                            height="652" 
+                            src="https://www.youtube.com/embed/Y8Ek1L5gtSc?si=l98nicudsgIq7iQo&amp;controls=0" 
+                            title="YouTube video player" 
+                            frameBorder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerPolicy="strict-origin-when-cross-origin" 
+                            allowFullScreen
+                        ></iframe>
+                    </div>
+                )}
+
                 {/* Detailed Image */}
                 <div className="w-[1160px] flex justify-center">
                     <img 

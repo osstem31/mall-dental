@@ -73,7 +73,7 @@ export default function DetailTabs({
 
     const renderDescription = () => (
         <div id="section-0" className="flex flex-col items-center scroll-mt-[169px] w-full">
-            <div className={`w-full flex flex-col items-center bg-white overflow-hidden transition-all duration-500 ${isDescriptionFolded ? 'max-h-[800px]' : 'max-h-[10000px]'}`}>
+            <div className={`w-full flex flex-col items-center bg-white overflow-hidden transition-all duration-500 ${isDescriptionFolded ? (isKS3 ? 'max-h-[1150px]' : 'max-h-[800px]') : 'max-h-[10000px]'}`}>
                 {/* Mandatory Info Table */}
                 <div className="w-[1160px]">
                     <h3 className="text-[18px] font-bold mb-4">필수 표기 정보</h3>

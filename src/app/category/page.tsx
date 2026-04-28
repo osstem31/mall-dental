@@ -101,7 +101,7 @@ function CategoryContent() {
                 brands: ['Osstem Implant'],
                 items: [
                     'TS II SA Implant NoMount',
-                    'TS II SA Implant Pre-Mounted',
+                    'KS 3 SA Implant (NEW) NoMount',
                     'TS II BA Implant NoMount',
                     'TS II BA Implant Pre-Mounted',
                     'TS II SA Implant Bevel Machined',

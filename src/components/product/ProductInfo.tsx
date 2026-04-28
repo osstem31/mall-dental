@@ -201,7 +201,8 @@ export default function ProductInfo({ name, brand, price, thumbnail }: ProductIn
     const totalPrice = selectedProducts.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     const displayName = name || (isImplant ? 'TS II SA Implant NoMount' : '[오스템x레오거] 2:2 덴탈 세트');
-    const displayPrice = isImplant ? '53,100' : '15,200';
+    const isKS3 = displayName === 'KS 3 SA Implant (NEW) NoMount';
+    const displayPrice = isKS3 ? '61,040' : (isImplant ? '53,100' : '15,200');
     const displayThumbnail = thumbnail || (isImplant ? '/img/imple_1.png' : '/img/total_1.png');
 
     return (
@@ -254,14 +255,14 @@ export default function ProductInfo({ name, brand, price, thumbnail }: ProductIn
                                 <div className="flex justify-between items-baseline">
                                     <span className="text-[14px] text-[#1E1E1E] whitespace-nowrap">소비자가</span>
                                     <div className="flex items-baseline gap-[2px]">
-                                        <span className="text-[16px] text-[#1E1E1E]">154,000</span>
+                                        <span className="text-[16px] text-[#1E1E1E]">{isKS3 ? '177,000' : '154,000'}</span>
                                         <span className="text-[14px] text-[#1E1E1E]">원</span>
                                     </div>
                                 </div>
                                 <div className="flex justify-between items-baseline">
                                     <span className="text-[14px] font-bold text-[#1e1e1e] whitespace-nowrap">임플란트PKG</span>
                                     <div className="flex items-baseline gap-[2px]">
-                                        <span className="text-[18px] font-bold text-[#1E1E1E]">53,100</span>
+                                        <span className="text-[18px] font-bold text-[#1E1E1E]">{isKS3 ? '61,040' : '53,100'}</span>
                                         <span className="text-[14px] font-bold text-[#1E1E1E]">원</span>
                                     </div>
                                 </div>
@@ -347,7 +348,7 @@ export default function ProductInfo({ name, brand, price, thumbnail }: ProductIn
             <div className="w-[588px] grid grid-cols-[100px_1fr] gap-y-[12px] mb-[25px] relative">
                 <span className="text-[#999999] font-semibold text-[14px] tracking-[-0.5px] leading-none flex items-center">상품설명</span>
                 <span className="font-medium text-[#1E1E1E] text-[14px] tracking-[-0.5px] leading-none">
-                    {isImplant ? metadata.description : '오스템 치약과 더블와이드 칫솔 SET상품'}
+                    {isKS3 ? '초기 고정력을 극대화하는 NEW KS 3' : (isImplant ? metadata.description : '오스템 치약과 더블와이드 칫솔 SET상품')}
                 </span>
                 <span className="text-[#999999] font-semibold text-[14px] tracking-[-0.5px] leading-none flex items-center">판매단위</span>
                 <span className="font-medium text-[#1E1E1E] text-[14px] tracking-[-0.5px] leading-none">
@@ -378,24 +379,26 @@ export default function ProductInfo({ name, brand, price, thumbnail }: ProductIn
                 {isImplant ? (
                     <>
                         <h3 className="text-[14px] font-bold text-[#1E1E1E] mb-[5px]">규격선택</h3>
-                        <div className="grid grid-cols-[100px_1fr] items-center h-[29px]">
-                            <span className="font-bold text-[14px] text-[#1e1e1e] tracking-[-0.5px] leading-none">Size</span>
-                            <div className="flex gap-[10px]">
-                                {['Mini', 'Regular'].map(s => (
-                                    <button
-                                        key={s}
-                                        onClick={() => {
-                                            setSelectedSpec(s);
-                                            setSelectedDiameter('');
-                                            setSelectedLength('');
-                                        }}
-                                        className={`w-[57px] h-[29px] border text-[13px] transition-all leading-none inline-flex items-center justify-center ${selectedSpec === s ? 'bg-[#424242] border-[#424242] text-white font-bold' : 'border-[#DEDEDE] text-[#666666] bg-white hover:border-[#BBBBBB]'}`}
-                                    >
-                                        {s}
-                                    </button>
-                                ))}
+                        {!isKS3 && (
+                            <div className="grid grid-cols-[100px_1fr] items-center h-[29px]">
+                                <span className="font-bold text-[14px] text-[#1e1e1e] tracking-[-0.5px] leading-none">Size</span>
+                                <div className="flex gap-[10px]">
+                                    {['Mini', 'Regular'].map(s => (
+                                        <button
+                                            key={s}
+                                            onClick={() => {
+                                                setSelectedSpec(s);
+                                                setSelectedDiameter('');
+                                                setSelectedLength('');
+                                            }}
+                                            className={`w-[57px] h-[29px] border text-[13px] transition-all leading-none inline-flex items-center justify-center ${selectedSpec === s ? 'bg-[#424242] border-[#424242] text-white font-bold' : 'border-[#DEDEDE] text-[#666666] bg-white hover:border-[#BBBBBB]'}`}
+                                        >
+                                            {s}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        )}
 
                         <div className="grid grid-cols-[100px_1fr] items-center h-[29px]">
                             <span className="font-bold text-[14px] text-[#1e1e1e] tracking-[-0.5px] leading-none">Diameter</span>
@@ -404,8 +407,11 @@ export default function ProductInfo({ name, brand, price, thumbnail }: ProductIn
                                     const diaValue = d.replace('DØ','');
                                     let status: 'active' | 'inactive' | 'impossible' = 'inactive';
                                     
-                                    if (!selectedSpec) status = 'inactive';
-                                    else if (selectedSpec === 'Mini') {
+                                    if (isKS3) {
+                                        status = 'active';
+                                    } else if (!selectedSpec) {
+                                        status = 'inactive';
+                                    } else if (selectedSpec === 'Mini') {
                                         if (diaValue === '3.5') status = 'active';
                                         else status = 'impossible';
                                     } else {
@@ -418,7 +424,7 @@ export default function ProductInfo({ name, brand, price, thumbnail }: ProductIn
                                         <button
                                             key={d}
                                             disabled={status !== 'active'}
-                                            onClick={() => setSelectedDiameter(diaValue)}
+                                            onClick={() => { setSelectedDiameter(diaValue); setSelectedLength(''); }}
                                             className={`relative w-[57px] h-[29px] border text-[13px] transition-all leading-none inline-flex items-center justify-center overflow-hidden
                                                 ${status === 'impossible' ? 'border-[#DEDEDE] text-[#CECECE] bg-[#F7F7F7]' : 
                                                   status === 'inactive' ? 'border-[#EEEEEE] text-[#BBBBBB] bg-[#F8F8F8]' : 
@@ -445,8 +451,9 @@ export default function ProductInfo({ name, brand, price, thumbnail }: ProductIn
                                 {['6.0mm', '7.0mm', '8.5mm', '10.0mm', '11.5mm', '13.0mm'].map((l) => {
                                     let status: 'active' | 'inactive' | 'impossible' = 'inactive';
                                     
-                                    if (!selectedDiameter) status = 'inactive';
-                                    else if (selectedDiameter === '3.5') {
+                                    if (!selectedDiameter) {
+                                        status = 'inactive';
+                                    } else if (selectedDiameter === '3.5') {
                                         if (l === '6.0mm' || l === '7.0mm') status = 'impossible';
                                         else status = 'active';
                                     } else {
@@ -461,12 +468,13 @@ export default function ProductInfo({ name, brand, price, thumbnail }: ProductIn
                                             disabled={status !== 'active'}
                                             onClick={() => {
                                                 setSelectedLength(l);
+                                                const lenNum = Math.floor(parseFloat(l.replace('mm',''))).toString().padStart(2, '0');
                                                 const newItem = {
-                                                    id: `TS2M35${l.replace('.0mm','').replace('mm','')}`,
-                                                    name: `SA Implant (${selectedSpec}, DØ${selectedDiameter}, L${l})`,
-                                                    price: 53100,
+                                                    id: isKS3 ? `KS3_${selectedDiameter}_${l.replace('.0mm','').replace('mm','')}` : `TS2M35${l.replace('.0mm','').replace('mm','')}`,
+                                                    name: isKS3 ? `KS 3 SA Implant (DØ${selectedDiameter}, L${l})` : `SA Implant (${selectedSpec}, DØ${selectedDiameter}, L${l})`,
+                                                    price: isKS3 ? 61040 : 53100,
                                                     quantity: 1,
-                                                    code: `TS2M35${l.replace('.0mm','').replace('mm','')}`
+                                                    code: isKS3 ? `KS3S${selectedDiameter.replace('.','')}${lenNum}S` : `TS2M35${l.replace('.0mm','').replace('mm','')}`
                                                 };
                                                 if (!selectedProducts.find(p => p.id === newItem.id)) {
                                                     setSelectedProducts([...selectedProducts, newItem]);
@@ -547,21 +555,21 @@ export default function ProductInfo({ name, brand, price, thumbnail }: ProductIn
                             <thead className="bg-[#A4A8B2] text-white">
                                 <tr className="h-[32px]">
                                     <th className="px-[10px] py-0 font-bold text-center h-[32px] align-middle">품목코드</th>
-                                    <th className="px-[10px] py-0 font-bold text-center h-[32px] align-middle">규격</th>
+                                    <th className="px-[10px] py-0 font-bold text-center w-[236.8px] h-[32px] align-middle">규격</th>
                                     <th className="px-[10px] py-0 font-bold text-center w-[100px] h-[32px] align-middle">수량</th>
-                                    <th className="px-[10px] py-0 font-bold text-center w-[120px] h-[32px] align-middle">가격</th>
+                                    <th className="px-[10px] py-0 font-bold text-center w-[100px] h-[32px] align-middle">가격</th>
                                     <th className="px-[10px] py-0 font-bold text-center w-[60px] h-[32px] align-middle">삭제</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {selectedProducts.map(item => (
-                                    <tr key={item.id} className="h-[40px] border-b border-[#DEDEDE] hover:bg-gray-50 text-[13px]">
+                                    <tr key={item.id} className="h-[40px] border-b border-[#DEDEDE] hover:bg-gray-50 text-[12px]">
                                         <td className="p-[10px] text-center text-[#666666]">{item.code}</td>
                                         <td className="p-[10px] text-left text-[#1E1E1E] font-medium">{item.name}</td>
                                         <td className="p-[10px] text-center">
                                             <div className="flex items-center justify-center border border-[#DEDEDE] w-[66px] h-[22px] mx-auto bg-white overflow-hidden">
                                                 <button onClick={() => updateQuantity(item.id, -1)} className="w-[22px] h-[22px] border-r border-[#DEDEDE] hover:bg-gray-100 flex items-center justify-center text-[16px] pb-[1px]">-</button>
-                                                <span className="flex-1 text-center font-bold text-[13px]">{item.quantity}</span>
+                                                <span className="flex-1 text-center font-bold text-[12px]">{item.quantity}</span>
                                                 <button onClick={() => updateQuantity(item.id, 1)} className="w-[22px] h-[22px] border-l border-[#DEDEDE] hover:bg-gray-100 flex items-center justify-center text-[16px] pb-[1px]">+</button>
                                             </div>
                                         </td>
@@ -607,7 +615,18 @@ export default function ProductInfo({ name, brand, price, thumbnail }: ProductIn
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {[
+                                    {(isKS3 ? [
+                                        { code: 'KS3S3508S', spec: 'KS 3 SA Implant (NEW) NoMount (DØ3.5, 8.5mm)', insurance: 'L7502035' },
+                                        { code: 'KS3S3510S', spec: 'KS 3 SA Implant (NEW) NoMount (DØ3.5, 10.0mm)', insurance: 'L7502035' },
+                                        { code: 'KS3S3511S', spec: 'KS 3 SA Implant (NEW) NoMount (DØ3.5, 11.5mm)', insurance: 'L7502035' },
+                                        { code: 'KS3S3513S', spec: 'KS 3 SA Implant (NEW) NoMount (DØ3.5, 13.0mm)', insurance: 'L7502035' },
+                                        { code: 'KS3S4006S', spec: 'KS 3 SA Implant (NEW) NoMount (DØ4.0, 6.0mm)', insurance: 'L7502035' },
+                                        { code: 'KS3S4007S', spec: 'KS 3 SA Implant (NEW) NoMount (DØ4.0, 7.0mm)', insurance: 'L7502035' },
+                                        { code: 'KS3S4008S', spec: 'KS 3 SA Implant (NEW) NoMount (DØ4.0, 8.5mm)', insurance: 'L7502035' },
+                                        { code: 'KS3S4010S', spec: 'KS 3 SA Implant (NEW) NoMount (DØ4.0, 10.0mm)', insurance: 'L7502035' },
+                                        { code: 'KS3S4011S', spec: 'KS 3 SA Implant (NEW) NoMount (DØ4.0, 11.5mm)', insurance: 'L7502035' },
+                                        { code: 'KS3S4013S', spec: 'KS 3 SA Implant (NEW) NoMount (DØ4.0, 13.0mm)', insurance: 'L7502035' },
+                                    ] : [
                                         { code: 'TS2S4510SV6', spec: 'SA Implant (Regular, DØ4.5, L10.0mm)', insurance: 'L7502035' },
                                         { code: 'TS2S4510S', spec: 'TS II SA Implant (Regular, DØ4.5, 10.0mm)', insurance: 'L7502035' },
                                         { code: 'TS2M3508SV6', spec: 'SA Implant (Mini, DØ3.5, L8.5mm)', insurance: 'L7502035' },
@@ -618,7 +637,7 @@ export default function ProductInfo({ name, brand, price, thumbnail }: ProductIn
                                         { code: 'TS2M3517SV6', spec: 'SA Implant (Mini, DØ3.5, L17.0mm)', insurance: 'L7502035' },
                                         { code: 'TS2M3519SV6', spec: 'SA Implant (Mini, DØ3.5, L19.0mm)', insurance: 'L7502035' },
                                         { code: 'TS2M3521SV6', spec: 'SA Implant (Mini, DØ3.5, L21.0mm)', insurance: 'L7502035' },
-                                    ].map((row, idx, arr) => (
+                                    ]).map((row, idx, arr) => (
                                         <tr key={idx} className={`h-[32px] ${idx === arr.length - 1 ? 'border-b-[#DDDDDD] border-b' : 'border-b border-[#EEEEEE]'}`}>
                                             <td className="py-[4px] px-[15px] text-center text-[#1E1E1E]">{row.code}</td>
                                             <td className="py-[4px] px-[15px] text-left text-[#1E1E1E]">{row.spec}</td>

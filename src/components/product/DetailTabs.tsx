@@ -69,6 +69,7 @@ export default function DetailTabs({
     };
 
     const isMaterial = productName.includes('덴탈 세트') || productName.includes('OSSTEM FAMILY');
+    const isKS3 = productName === 'KS 3 SA Implant (NEW) NoMount';
 
     const renderDescription = () => (
         <div id="section-0" className="flex flex-col items-center scroll-mt-[169px] w-full">
@@ -79,7 +80,7 @@ export default function DetailTabs({
                     <div className="border-t border-[#eeeeee]">
                         <div className="grid grid-cols-[224px_1fr_224px_1fr] border-b border-[#eeeeee] text-[14px]">
                             <div className="bg-[#FAFAFA] h-[45px] flex items-center p-4 font-medium text-[#333333]">상품코드</div>
-                            <div className="h-[45px] flex items-center p-4 text-[#333333]">{isMaterial ? '23075989' : '17128012'}</div>
+                            <div className="h-[45px] flex items-center p-4 text-[#333333]">{isMaterial ? '23075989' : isKS3 ? '170000640' : '17128012'}</div>
                             <div className="bg-[#FAFAFA] h-[45px] flex items-center p-4 font-medium text-[#333333]">브랜드</div>
                             <div className="h-[45px] flex items-center p-4 text-[#333333]">{isMaterial ? '오스템파마(주)' : '오스템임플란트'}</div>
                         </div>
@@ -125,7 +126,7 @@ export default function DetailTabs({
                 {/* Detailed Image */}
                 <div className="w-[1160px] flex justify-center">
                     <img 
-                        src={isMaterial ? "/img/material_detail.jpg" : "/img/TSII_SA_Implant_상세_10.png"} 
+                        src={isMaterial ? "/img/material_detail.jpg" : isKS3 ? "/img/KS3_detail.png" : "/img/TSII_SA_Implant_상세_10.png"} 
                         alt="Product Detail" 
                         className="w-full h-auto"
                     />
@@ -247,7 +248,7 @@ export default function DetailTabs({
                 {/* 썸네일 1개, 138x138px, 테두리 제거 */}
                 <div className="flex gap-[6px]">
                     <div className="w-[138px] h-[138px] overflow-hidden shrink-0 cursor-pointer relative rounded-[4px]">
-                        <img src={isMaterial ? "/img/total_2.png" : "/img/u74.png"} alt="리뷰 사진 1" className="w-full h-full object-cover" />
+                        <img src={isMaterial ? "/img/total_2.png" : isKS3 ? "/img/K3_review.png" : "/img/u74.png"} alt="리뷰 사진 1" className="w-full h-full object-cover" />
                     </div>
                 </div>
             </div>
@@ -305,7 +306,7 @@ export default function DetailTabs({
                         date: '2025.07.13',
                         rating: 5,
                         content: '오스템 미백치약을 써봤는데<br/>개인 치아상태에 따라 다르겠으나<br/>제 경험에는 효과도 좋고 입안이 깔끔한 느낌이 좋아<br/>요번엔 충치로 주문해봤습니다.<br/>믿고 쓰겠습니다!',
-                        image: isMaterial ? "/img/total_2.png" : "/img/u74.png",
+                        image: isMaterial ? "/img/total_2.png" : isKS3 ? "/img/K3_review.png" : "/img/u74.png",
                         sellerReply: {
                             user: '판매자',
                             date: '2025.07.14',
@@ -563,11 +564,11 @@ export default function DetailTabs({
                             <div className="flex items-center gap-4">
                                 <div className="w-[50px] h-[50px] flex items-center justify-center p-1 shrink-0 border border-[#E9E9E9]">
                                     <img 
-                                        src={thumbnail || (isMaterial ? '/img/total_1.png' : '/img/imple_1.png')} 
+                                        src={thumbnail || (isKS3 ? '/img/K3_1.png' : (isMaterial ? '/img/total_1.png' : '/img/imple_1.png'))} 
                                         alt={productName} 
                                         className="w-full h-full object-contain" 
                                         onError={(e) => {
-                                            (e.target as HTMLImageElement).src = isMaterial ? "/img/total_1.png" : "/img/imple_1.png";
+                                            (e.target as HTMLImageElement).src = isKS3 ? '/img/K3_1.png' : (isMaterial ? "/img/total_1.png" : "/img/imple_1.png");
                                         }}
                                     />
                                 </div>
@@ -605,6 +606,8 @@ export default function DetailTabs({
                                         if (isInquiry) {
                                             const inquiryUrl = isMaterial 
                                                 ? 'https://voc.denall.com/qna/input?channel=mall&goodsNo=23075848'
+                                                : isKS3 
+                                                ? 'https://voc.denall.com/qna/input?channel=mall&goodsNo=170000640'
                                                 : 'https://voc.denall.com/qna/input?channel=mall&goodsNo=17128012';
                                             window.open(inquiryUrl, '_blank');
                                         } else {

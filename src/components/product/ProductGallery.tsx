@@ -5,10 +5,12 @@ import React from 'react';
 interface ProductGalleryProps {
     thumbnail?: string;
     isImplant?: boolean;
+    productName?: string;
 }
 
-export default function ProductGallery({ thumbnail, isImplant: propIsImplant }: ProductGalleryProps) {
+export default function ProductGallery({ thumbnail, isImplant: propIsImplant, productName }: ProductGalleryProps) {
     const isImplant = propIsImplant ?? (thumbnail?.includes('imple_') || thumbnail?.includes('imple'));
+    const isKS3 = productName === 'KS 3 SA Implant (NEW) NoMount';
 
     const impleImages = [
         "/img/imple_1.png",
@@ -26,7 +28,15 @@ export default function ProductGallery({ thumbnail, isImplant: propIsImplant }: 
         "/img/total_5.png"
     ];
 
-    const actualImages = isImplant ? impleImages : totalImages;
+    const ks3Images = [
+        "/img/K3_1.png",
+        "/img/K3_2.png",
+        "/img/K3_3.png",
+        "/img/K3_4.png",
+        "/img/K3_5.png"
+    ];
+
+    const actualImages = isKS3 ? ks3Images : (isImplant ? impleImages : totalImages);
 
     const [activeIndex, setActiveIndex] = React.useState(0);
     const mainImage = actualImages[activeIndex];

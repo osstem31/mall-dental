@@ -5,10 +5,43 @@ import RelatedResourcesSlider from '@/components/product/RelatedResourcesSlider'
 
 // 상품 맞춤형 관련자료 생성을 위한 유틸리티 함수
 function getRelatedResources(productName: string) {
+    const isKS3 = productName === 'KS 3 SA Implant (NEW) NoMount';
     const isMaterial = productName.includes('덴탈 세트') || productName.includes('OSSTEM FAMILY');
-    
-    if (isMaterial) {
-        return [
+    let resources = [];
+    if (isKS3) {
+        resources = [
+            {
+                id: 1,
+                type: '동영상',
+                badgeColor: '#EB6100',
+                title: '[Implant] 한계를 넘어선 임플란트, New KS 3',
+                source: '오스템임플란트',
+                thumbnail: '/img/K2_thumb1.png',
+                duration: '05:12',
+                link: 'https://tv.denall.com/vod/play?id=8348'
+            },
+            {
+                id: 2,
+                type: '동영상',
+                badgeColor: '#EB6100',
+                title: '[Implant] New KS 3',
+                source: '오스템임플란트',
+                thumbnail: '/img/K2_thumb2.png',
+                duration: '00:30',
+                link: 'https://tv.denall.com/vod/play?id=8354'
+            },
+            {
+                id: 3,
+                type: '홍보자료',
+                badgeColor: '#EB6100',
+                title: 'KS 3 SA Implant',
+                source: '오스템임플란트',
+                thumbnail: '/img/K2_thumb3.png',
+                link: 'https://prd-img-dnm.osstem.com/mall/files/etc/a3/202604/KS3_detail.png'
+            }
+        ];
+    } else if (isMaterial) {
+        resources = [
             {
                 id: 1,
                 type: 'SNS',
@@ -48,7 +81,8 @@ function getRelatedResources(productName: string) {
                 title: '충치에 대한 A to Z',
                 source: '오스템임플란트',
                 thumbnail: '/img/material_5.png',
-                duration: '03:45'
+                duration: '03:45',
+                link: 'https://tv.denall.com/vod/play?id=8381'
             },
             {
                 id: 6,
@@ -60,69 +94,79 @@ function getRelatedResources(productName: string) {
                 duration: '04:20'
             }
         ];
+    } else {
+        resources = [
+            {
+                id: 1,
+                type: '동영상',
+                badgeColor: '#EB6100',
+                title: '[대한구강악안면임플란트학회] 임플란트 수술 시 발생하는 다양한 합병증의 예방 및 해결 전략 1부',
+                source: '오스템임플란트',
+                thumbnail: '/img/thumb_1.png',
+                duration: '05:12',
+                link: 'https://tv.denall.com/vod/play?id=8537'
+            },
+            {
+                id: 2,
+                type: '뉴스',
+                badgeColor: '#EB6100',
+                title: '오늘의 치과계 뉴스',
+                source: '오스템임플란트',
+                thumbnail: '/img/thumb_2.png'
+            },
+            {
+                id: 3,
+                type: 'SNS',
+                badgeColor: '#EB6100',
+                title: '임플란트 수술에 관한 궁금증',
+                source: '오스템임플란트',
+                thumbnail: '/img/thumb_3.png'
+            },
+            {
+                id: 4,
+                type: '학술논문',
+                badgeColor: '#EB6100',
+                title: 'SA 표면 임플란트의 자외선조사가 성견의 임플란트 골유착에 미치는 영향',
+                source: '오스템임플란트',
+                thumbnail: '/img/thumb_4.png'
+            },
+            {
+                id: 5,
+                type: '홍보자료',
+                badgeColor: '#EB6100',
+                title: 'TS II 브로셔',
+                source: '오스템임플란트',
+                thumbnail: '/img/thumb_5.png'
+            },
+            {
+                id: 6,
+                type: '동영상',
+                badgeColor: '#EB6100',
+                title: 'TS II SA 임플란트 시스템 정밀 식립 프로토콜 이해',
+                source: '오스템임플란트',
+                thumbnail: '/img/thumb_6.png',
+                duration: '00:30'
+            },
+            {
+                id: 7,
+                type: '홍보자료',
+                badgeColor: '#EB6100',
+                title: 'TS II 임플란트 임상 케이스',
+                source: '오스템임플란트',
+                thumbnail: '/img/thumb_7.png'
+            }
+        ];
     }
 
-    return [
-        {
-            id: 1,
-            type: '동영상',
-            badgeColor: '#EB6100',
-            title: '[대한구강악안면임플란트학회] 임플란트 수술 시 발생하는 다양한 합병증의 예방 및 해결 전략 1부',
-            source: '오스템임플란트',
-            thumbnail: '/img/thumb_1.png',
-            duration: '05:12',
-            link: 'https://tv.denall.com/vod/play?id=8537'
-        },
-        {
-            id: 2,
-            type: '뉴스',
-            badgeColor: '#EB6100',
-            title: '오늘의 치과계 뉴스',
-            source: '오스템임플란트',
-            thumbnail: '/img/thumb_2.png'
-        },
-        {
-            id: 3,
-            type: 'SNS',
-            badgeColor: '#EB6100',
-            title: '임플란트 수술에 관한 궁금증',
-            source: '오스템임플란트',
-            thumbnail: '/img/thumb_3.png'
-        },
-        {
-            id: 4,
-            type: '학술논문',
-            badgeColor: '#EB6100',
-            title: 'SA 표면 임플란트의 자외선조사가 성견의 임플란트 골유착에 미치는 영향',
-            source: '오스템임플란트',
-            thumbnail: '/img/thumb_4.png'
-        },
-        {
-            id: 5,
-            type: '홍보자료',
-            badgeColor: '#EB6100',
-            title: 'TS II 브로셔',
-            source: '오스템임플란트',
-            thumbnail: '/img/thumb_5.png'
-        },
-        {
-            id: 6,
-            type: '동영상',
-            badgeColor: '#EB6100',
-            title: 'TS II SA 임플란트 시스템 정밀 식립 프로토콜 이해',
-            source: '오스템임플란트',
-            thumbnail: '/img/thumb_6.png',
-            duration: '00:30'
-        },
-        {
-            id: 7,
-            type: '홍보자료',
-            badgeColor: '#EB6100',
-            title: 'TS II 임플란트 임상 케이스',
-            source: '오스템임플란트',
-            thumbnail: '/img/thumb_7.png'
-        }
-    ];
+    const order = ['동영상', 'SNS', '학술논문', '뉴스', '홍보자료'];
+    return resources.sort((a, b) => {
+        const indexA = order.indexOf(a.type);
+        const indexB = order.indexOf(b.type);
+        // If type is not in the array, put it at the end
+        const finalIndexA = indexA === -1 ? 999 : indexA;
+        const finalIndexB = indexB === -1 ? 999 : indexB;
+        return finalIndexA - finalIndexB;
+    });
 }
 
 export default async function ProductDetailPage({
@@ -134,12 +178,13 @@ export default async function ProductDetailPage({
     const isImplant = (params.brand || 'Osstem Implant') === 'Osstem Implant';
     const rawName = params.name || (isImplant ? 'TS II SA Implant NoMount' : '[오스템x레오거] 2:2 덴탈 세트');
     const productName = rawName === 'OSSTEM FAMILY TRAVEL KIT (S+C+G+30)' ? '[오스템x레오거] 2:2 덴탈 세트' : rawName;
-    const displayPrice = isImplant ? '53,100' : '15,200';
+    const isKS3 = productName === 'KS 3 SA Implant (NEW) NoMount';
+    const displayPrice = isKS3 ? '61,040' : (isImplant ? '53,100' : '15,200');
     const productData = {
         name: productName,
         brand: params.brand || 'Osstem Implant',
         price: displayPrice,
-        thumbnail: (params.thumbnail && params.thumbnail !== '') ? params.thumbnail : (isImplant ? '/img/imple_1.png' : '/img/total_1.png'),
+        thumbnail: isKS3 ? '/img/K3_1.png' : ((params.thumbnail && params.thumbnail !== '') ? params.thumbnail : (isImplant ? '/img/imple_1.png' : '/img/total_1.png')),
         category: params.category || (isImplant ? '임플란트' : '예방/구강'),
         subCategory: params.subCategory || (isImplant ? 'TS system' : '구강케어 SET')
     };
@@ -218,6 +263,7 @@ export default async function ProductDetailPage({
                         <ProductGallery 
                             thumbnail={productData.thumbnail} 
                             isImplant={isImplant}
+                            productName={productData.name}
                         />
                     </div>
                     <div className="flex-1">

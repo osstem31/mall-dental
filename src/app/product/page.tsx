@@ -268,7 +268,7 @@ export default async function ProductDetailPage({
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DEDEDE" strokeWidth="2"><path d="M9 5L16 12L9 19" /></svg>
 
                             <div className="flex items-center gap-[6px]">
-                                <span className="text-[13px] font-normal text-[#737373]">{isKS3 ? 'KSII' : 'TSII'}</span>
+                                <span className="text-[13px] font-normal text-[#737373]">{isKS3 ? 'KSIII' : 'TSII'}</span>
                                 <button className="w-[15px] h-[15px] rounded-full border border-[#DEDEDE] flex items-center justify-center">
                                     <svg width="6" height="3" viewBox="0 0 24 12" fill="none" stroke="#999999" strokeWidth="5"><path d="M2 2L12 12L22 2" /></svg>
                                 </button>

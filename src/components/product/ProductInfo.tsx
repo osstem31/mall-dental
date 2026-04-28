@@ -116,6 +116,7 @@ export default function ProductInfo({ name, brand, price, thumbnail }: ProductIn
     const [isModalDropdownOpen, setIsModalDropdownOpen] = React.useState(false);
     const [selectedModalPkg, setSelectedModalPkg] = React.useState('');
     const [showToast, setShowToast] = React.useState(false);
+    const [isOptionAlertOpen, setIsOptionAlertOpen] = React.useState(false);
 
     React.useEffect(() => {
         if (isComparisonModalOpen) {
@@ -171,7 +172,7 @@ export default function ProductInfo({ name, brand, price, thumbnail }: ProductIn
 
     const handleAddToCart = () => {
         if (selectedProducts.length === 0) {
-            alert('상품을 선택해주세요.');
+            setIsOptionAlertOpen(true);
             return;
         }
         const cartItems: CartItem[] = selectedProducts.map(item => ({
@@ -688,9 +689,7 @@ export default function ProductInfo({ name, brand, price, thumbnail }: ProductIn
                 </button>
                 <button
                     onClick={handleAddToCart}
-                    className={`flex-1 h-full font-bold text-[16px] tracking-[-0.5%] leading-none transition-colors ${
-                        totalPrice > 0 ? 'bg-[#EB6100] text-white hover:bg-[#D45600]' : 'bg-[#B9B9B9] text-white cursor-not-allowed'
-                    }`}
+                    className="flex-1 h-full font-bold text-[16px] tracking-[-0.5%] leading-none transition-colors bg-[#EB6100] text-white hover:bg-[#D45600]"
                 >
                     주문서 담기
                 </button>
@@ -788,6 +787,23 @@ export default function ProductInfo({ name, brand, price, thumbnail }: ProductIn
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Option Alert Modal */}
+            {isOptionAlertOpen && (
+                <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50 px-[20px]">
+                    <div className="bg-white w-[360px] rounded-[8px] p-[30px] flex flex-col items-center justify-center relative shadow-2xl animate-in fade-in zoom-in duration-200">
+                        <div className="mb-[24px] text-[16px] font-bold text-[#333333] text-center whitespace-pre-wrap">
+                            옵션을 선택해 주세요.
+                        </div>
+                        <button
+                            onClick={() => setIsOptionAlertOpen(false)}
+                            className="w-full h-[48px] bg-[#EB6100] text-white text-[16px] font-bold rounded-[4px] hover:bg-[#D45600] transition-colors"
+                        >
+                            확인
+                        </button>
                     </div>
                 </div>
             )}

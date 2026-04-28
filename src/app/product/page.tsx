@@ -38,6 +38,51 @@ function getRelatedResources(productName: string) {
                 source: '오스템임플란트',
                 thumbnail: '/img/K2_thumb3.png',
                 link: 'https://prd-img-dnm.osstem.com/mall/files/etc/a3/202604/KS3_detail.png'
+            },
+            {
+                id: 4,
+                type: 'SNS',
+                badgeColor: '#EB6100',
+                title: 'Beyond limits, New KS 3',
+                source: '오스템임플란트',
+                thumbnail: '/img/K3_rel_1.png',
+                link: 'https://www.instagram.com/p/DV71Lq9FfVI/?img_index=1'
+            },
+            {
+                id: 5,
+                type: '학술논문',
+                badgeColor: '#EB6100',
+                title: 'Immediate loading 부족한 성공률 5% 채우기',
+                source: '오스템임플란트',
+                thumbnail: '/img/K3_rel_2.png',
+                link: 'https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001758243'
+            },
+            {
+                id: 6,
+                type: '학술논문',
+                badgeColor: '#EB6100',
+                title: 'IImmediate and early implant loading protocols: A literature review of clinical studies',
+                source: '오스템임플란트',
+                thumbnail: '/img/K3_rel_3.png',
+                link: 'https://www.thejpd.org/article/S0022-3913(05)00240-4/abstract'
+            },
+            {
+                id: 7,
+                type: '뉴스',
+                badgeColor: '#EB6100',
+                title: '오스템임플란트, 즉시 로딩 특화 설계 ‘New KS 3’ 베일 벗는다',
+                source: '오스템임플란트',
+                thumbnail: '/img/K3_rel_4.jpg',
+                link: 'https://www.dentalarirang.com/news/articleView.html?idxno=47075'
+            },
+            {
+                id: 8,
+                type: '뉴스',
+                badgeColor: '#EB6100',
+                title: '즉시 로딩 특화 설계 적용한 차세대 임플란트 ‘New KS 3’ 정식 론칭',
+                source: '오스템임플란트',
+                thumbnail: '/img/K3_rel_5.jpg',
+                link: 'https://www.dentalnews1.com/news/articleView.html?idxno=24634'
             }
         ];
     } else if (isMaterial) {
@@ -207,7 +252,7 @@ export default async function ProductDetailPage({
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DEDEDE" strokeWidth="2"><path d="M9 5L16 12L9 19" /></svg>
                             
                             <div className="flex items-center gap-[6px]">
-                                <span className="text-[13px] font-normal text-[#737373]">TS system</span>
+                                <span className="text-[13px] font-normal text-[#737373]">{isKS3 ? 'KS System' : 'TS system'}</span>
                                 <button className="w-[15px] h-[15px] rounded-full border border-[#DEDEDE] flex items-center justify-center">
                                     <svg width="6" height="3" viewBox="0 0 24 12" fill="none" stroke="#999999" strokeWidth="5"><path d="M2 2L12 12L22 2" /></svg>
                                 </button>
@@ -223,7 +268,7 @@ export default async function ProductDetailPage({
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DEDEDE" strokeWidth="2"><path d="M9 5L16 12L9 19" /></svg>
 
                             <div className="flex items-center gap-[6px]">
-                                <span className="text-[13px] font-normal text-[#737373]">TSII</span>
+                                <span className="text-[13px] font-normal text-[#737373]">{isKS3 ? 'KSII' : 'TSII'}</span>
                                 <button className="w-[15px] h-[15px] rounded-full border border-[#DEDEDE] flex items-center justify-center">
                                     <svg width="6" height="3" viewBox="0 0 24 12" fill="none" stroke="#999999" strokeWidth="5"><path d="M2 2L12 12L22 2" /></svg>
                                 </button>

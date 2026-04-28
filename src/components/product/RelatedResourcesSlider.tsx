@@ -23,11 +23,11 @@ export default function RelatedResourcesSlider({ resources }: RelatedResourcesSl
     const maxIndex = Math.max(0, resources.length - itemsToShow);
 
     const handlePrev = () => {
-        setCurrentIndex(0);
+        setCurrentIndex(prev => Math.max(0, prev - itemsToShow));
     };
 
     const handleNext = () => {
-        setCurrentIndex(5);
+        setCurrentIndex(prev => Math.min(maxIndex, prev + itemsToShow));
     };
 
     // Card width: 225.9px, Gap: 7.6px
@@ -51,15 +51,15 @@ export default function RelatedResourcesSlider({ resources }: RelatedResourcesSl
                             </svg>
                         </button>
                         <div className="flex-1 h-[24px] flex items-center justify-center bg-transparent text-[14px] font-pretendard leading-[17px] tracking-[-0.5px] text-[#333333]">
-                            {currentIndex === 0 ? '1' : '2'} / 2
+                            {Math.ceil(currentIndex / itemsToShow) + 1} / {Math.ceil(resources.length / itemsToShow)}
                         </div>
                         <button 
                             onClick={handleNext}
-                            disabled={currentIndex === 5}
-                            className={`w-[24px] h-[24px] border border-[#DEDEDE] flex items-center justify-center flex-none transition-colors ${currentIndex === 5 ? 'bg-[#f7f7f7] cursor-not-allowed' : 'bg-transparent hover:bg-white/20'}`}
+                            disabled={currentIndex >= maxIndex}
+                            className={`w-[24px] h-[24px] border border-[#DEDEDE] flex items-center justify-center flex-none transition-colors ${currentIndex >= maxIndex ? 'bg-[#f7f7f7] cursor-not-allowed' : 'bg-transparent hover:bg-white/20'}`}
                         >
                             <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                                <path d="M6 4L10 8L6 12" stroke={currentIndex === 5 ? "#DEDEDE" : "#333333"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M6 4L10 8L6 12" stroke={currentIndex >= maxIndex ? "#DEDEDE" : "#333333"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         </button>
                     </div>

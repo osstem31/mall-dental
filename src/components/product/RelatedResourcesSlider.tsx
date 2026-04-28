@@ -20,14 +20,15 @@ interface RelatedResourcesSliderProps {
 export default function RelatedResourcesSlider({ resources }: RelatedResourcesSliderProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const itemsToShow = 5;
-    const maxIndex = Math.max(0, resources.length - itemsToShow);
+    const totalPages = Math.ceil(resources.length / itemsToShow);
+    const maxIndex = Math.max(0, (totalPages - 1) * itemsToShow);
 
     const handlePrev = () => {
-        setCurrentIndex(prev => Math.max(0, prev - 1));
+        setCurrentIndex(prev => Math.max(0, prev - itemsToShow));
     };
 
     const handleNext = () => {
-        setCurrentIndex(prev => Math.min(maxIndex, prev + 1));
+        setCurrentIndex(prev => Math.min(maxIndex, prev + itemsToShow));
     };
 
     // Card width: 225.9px, Gap: 7.6px
@@ -51,7 +52,7 @@ export default function RelatedResourcesSlider({ resources }: RelatedResourcesSl
                             </svg>
                         </button>
                         <div className="flex-1 h-[24px] flex items-center justify-center bg-transparent text-[14px] font-pretendard leading-[17px] tracking-[-0.5px] text-[#333333]">
-                            {currentIndex + 1} / {maxIndex + 1}
+                            {Math.floor(currentIndex / itemsToShow) + 1} / {totalPages}
                         </div>
                         <button 
                             onClick={handleNext}

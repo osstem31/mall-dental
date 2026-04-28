@@ -203,6 +203,10 @@ function getRelatedResources(productName: string) {
         ];
     }
 
+    if (isKS3) {
+        return resources.sort((a, b) => a.id - b.id);
+    }
+
     const order = ['동영상', 'SNS', '학술논문', '뉴스', '홍보자료'];
     return resources.sort((a, b) => {
         const indexA = order.indexOf(a.type);

@@ -794,13 +794,21 @@ export default function ProductInfo({ name, brand, price, thumbnail }: ProductIn
             {/* Option Alert Modal */}
             {isOptionAlertOpen && (
                 <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50 px-[20px]">
-                    <div className="bg-white w-[360px] rounded-[8px] p-[30px] flex flex-col items-center justify-center relative shadow-2xl animate-in fade-in zoom-in duration-200">
-                        <div className="mb-[24px] text-[16px] font-bold text-[#333333] text-center whitespace-pre-wrap">
-                            옵션을 선택해 주세요.
+                    <div className="bg-white w-[420px] pt-[50px] pb-[40px] px-[20px] flex flex-col items-center justify-center relative shadow-xl animate-in fade-in zoom-in duration-200">
+                        <button 
+                            onClick={() => setIsOptionAlertOpen(false)}
+                            className="absolute top-[15px] right-[15px] text-[#333333] hover:text-[#000000]"
+                        >
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M18 6L6 18M6 6l12 12" />
+                            </svg>
+                        </button>
+                        <div className="mb-[35px] text-[16px] font-normal text-[#1E1E1E] text-center whitespace-pre-wrap tracking-[-0.5px]">
+                            선택된 상품이 없습니다. 상품을 먼저 선택해 주세요.
                         </div>
                         <button
                             onClick={() => setIsOptionAlertOpen(false)}
-                            className="w-full h-[48px] bg-[#EB6100] text-white text-[16px] font-bold rounded-[4px] hover:bg-[#D45600] transition-colors"
+                            className="w-[140px] h-[45px] bg-[#EB6100] text-white text-[16px] font-bold hover:bg-[#D45600] transition-colors"
                         >
                             확인
                         </button>
